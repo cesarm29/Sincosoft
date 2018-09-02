@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+	<p>Crear Materias</p>
+  <div class="alert alert-danger alert-dismissable fuente-project" *ngIf="msg">
+       <a class="close" (click)="closeAlert()">
+          &times;
+       </a>
+     <h6>{{msg}}</h6>
+  </div>
+  <div class="alert alert-success alert-dismissable fuente-project" *ngIf="msgex">
+       <a class="close" (click)="closeAlertEx()">
+          &times;
+       </a>
+     <h6>{{msgex}}</h6>
+  </div>
+<form [formGroup]="materiasForm" (ngSubmit)="onSubmit()" >
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" formControlName="nombre" class="form-control" id="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"  placeholder="Ingrese el nombre">
+    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+          <div *ngIf="f.nombre.errors.required"> <label id="error">El nombre es requerido </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="descripcion">Descripcion</label>
+    <input type="text" formControlName="descripcion" class="form-control" id="descripcion" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }"  placeholder="Ingrese la descripcion">
+    <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+          <div *ngIf="f.descripcion.errors.required"> <label id="error">La descripcion es requerida </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="alumno">Seleccione el Alumno</label>
+      <select formControlName="alumno" class="form-control" id="alumno" [ngClass]="{ 'is-invalid': submitted && f.alumno.errors }" >
+        <option *ngFor="let item of listaAlumnos" [value]="item.id"> {{ item.nombre + " " + item.apellido}} </option>
+      </select>
+      <div *ngIf="submitted && f.alumno.errors" class="invalid-feedback">
+          <div *ngIf="f.alumno.errors.required"> <label id="error">El alumno es requerido </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="profesor">Seleccione el Profesor</label>
+    <select formControlName="profesor" class="form-control" id="profesor" [ngClass]="{ 'is-invalid': submitted && f.profesor.errors }" >
+        <option *ngFor="let item of listaProfesores" [value]="item.id"> {{ item.nombre + " " + item.apellido}} </option>
+      </select>
+      <div *ngIf="submitted && f.profesor.errors" class="invalid-feedback">
+          <div *ngIf="f.profesor.errors.required"> <label id="error">El profesor es requerido </label></div>
+     </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Crear</button>
+</form>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+</div>

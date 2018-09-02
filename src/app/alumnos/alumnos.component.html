@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+	<p>Crear Alumnos</p>
+
+  <div class="alert alert-danger alert-dismissable fuente-project" *ngIf="msg">
+       <a class="close" (click)="closeAlert()">
+          &times;
+       </a>
+     <h6>{{msg}}</h6>
+    </div>
+    <div class="alert alert-success alert-dismissable fuente-project" *ngIf="msgex">
+       <a class="close" (click)="closeAlertEx()">
+          &times;
+       </a>
+     <h6>{{msgex}}</h6>
+    </div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+  <div class="form-group" >
+    <label for="nombres">Nombres</label>
+    <input type="text" formControlName="nombres" class="form-control" id="nombres"   [ngClass]="{ 'is-invalid': submitted && f.nombres.errors }"  placeholder="Ingrese los nombres">
+     <div *ngIf="submitted && f.nombres.errors" class="invalid-feedback">
+          <div *ngIf="f.nombres.errors.required"> <label id="error">El nombre es requerido </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="apellidos">Apellidos</label>
+    <input type="text" formControlName="apellidos" class="form-control" id="apellidos" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }"  placeholder="Ingrese los apellidos">
+     <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback">
+          <div *ngIf="f.apellidos.errors.required"><label id="error">El apellido es requerido</label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="documento">Documento</label>
+    <input type="number"  formControlName="documento" class="form-control" id="documento" [ngClass]="{ 'is-invalid': submitted && f.documento.errors }"  placeholder="Ingrese el Documento">
+     <div *ngIf="submitted && f.documento.errors" class="invalid-feedback">
+          <div *ngIf="f.documento.errors.required"><label id="error">El documento es requerido</label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="direccion">Dirección</label>
+    <input type="text"  formControlName="direccion" class="form-control" id="direccion" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }"  placeholder="Ingrese la dirección">
+     <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
+          <div *ngIf="f.direccion.errors.required"><label id="error">La direccion es requerida</label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="telefono">Telefono</label>
+    <input type="number"  formControlName="telefono" class="form-control" id="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }"  placeholder="Ingrese el telefono">
+     <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+          <div *ngIf="f.telefono.errors.required"><label id="error">El telefono es requerido</label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="nombres">Curso</label>
+    <input type="text"  formControlName="curso" class="form-control" id="curso" [ngClass]="{ 'is-invalid': submitted && f.curso.errors }"  placeholder="Ingrese el curso">
+     <div *ngIf="submitted && f.curso.errors" class="invalid-feedback">
+          <div *ngIf="f.curso.errors.required"><label id="error">El curso es requerido</label></div>
+     </div>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Crear</button>
+</form>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+</div>

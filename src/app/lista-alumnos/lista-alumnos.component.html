@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<div class="container">
+	<p>Listado Alumnos</p>
+<table datatable class="row-border hover">
+  <thead>
+    <tr>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Documento</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th>Curso</th>
+      <th>Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listaAlumnos; let in = index">
+      <td>{{item.nombre}}</td>
+      <td>{{item.apellido}}</td>
+      <td>{{item.documento}}</td>
+      <td>{{item.direccion}}</td>
+      <td>{{item.telefono}}</td>
+      <td>{{item.curso}}</td>
+      <td><button type="button" class="btn btn-primary">Actualizar</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>	

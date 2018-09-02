@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+	<p>Crear Notas</p>
+  <div class="alert alert-danger alert-dismissable fuente-project" *ngIf="msg">
+       <a class="close" (click)="closeAlert()">
+          &times;
+       </a>
+     <h6>{{msg}}</h6>
+  </div>
+  <div class="alert alert-success alert-dismissable fuente-project" *ngIf="msgex">
+       <a class="close" (click)="closeAlertEx()">
+          &times;
+       </a>
+     <h6>{{msgex}}</h6>
+  </div>
+<form [formGroup]="notasForm" (ngSubmit)="onSubmit()" >
+  <div class="form-group">
+    <label for="valor">Valor</label>
+    <input type="text" formControlName="valor" class="form-control" id="valor" [ngClass]="{ 'is-invalid': submitted && f.valor.errors }"  placeholder="Ingrese la nota">
+    <div *ngIf="submitted && f.valor.errors" class="invalid-feedback">
+          <div *ngIf="f.valor.errors.required"> <label id="error">El valor es requerido </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="fecha">Fecha</label>
+    <input type="date" formControlName="fecha" class="form-control" id="fecha" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }"  placeholder="Ingrese la fecha">
+    <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+          <div *ngIf="f.fecha.errors.required"> <label id="error">La fecha es requerida </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="alumno">Seleccione el Alumno</label>
+      <select formControlName="alumno" class="form-control" id="alumno" [ngClass]="{ 'is-invalid': submitted && f.alumno.errors }" >
+        <option *ngFor="let item of listaAlumnos" [value]="item.id"> {{ item.nombre + " " + item.apellido}} </option>
+      </select>
+      <div *ngIf="submitted && f.alumno.errors" class="invalid-feedback">
+          <div *ngIf="f.alumno.errors.required"> <label id="error">El alumno es requerido </label></div>
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="materia">Seleccione la materia</label>
+    <select formControlName="materia" class="form-control" id="materia" [ngClass]="{ 'is-invalid': submitted && f.materia.errors }" >
+        <option *ngFor="let item of listaMaterias" [value]="item.id"> {{ item.nombre }} </option>
+      </select>
+      <div *ngIf="submitted && f.materia.errors" class="invalid-feedback">
+          <div *ngIf="f.materia.errors.required"> <label id="error">El profesor es requerido </label></div>
+     </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Crear</button>
+</form>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+</div>

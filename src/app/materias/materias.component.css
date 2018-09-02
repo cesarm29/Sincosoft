@@ -1,0 +1,12 @@
+.container{
+	padding-top: 50px;
+}
+p {
+	text-align: center;
+}
+label{
+	font-size: 18px;
+}
+.navbar-nav .nav-link{
+	font-size: 18px;
+}
