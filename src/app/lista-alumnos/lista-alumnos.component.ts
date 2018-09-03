@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import {CommonsService} from '../commons.service';
 import {Http,Response, Headers, RequestOptions } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';  
+import { Router, ActivatedRoute } from '@angular/router';
+declare var jsPDF: any;
+
+
+
 
 @Component({
   selector: 'app-lista-alumnos',
   templateUrl: './lista-alumnos.component.html',
-  styleUrls: ['./lista-alumnos.component.css']
+  styleUrls: ['./lista-alumnos.component.css'],
+  providers: [{ provide: 'Window',  useValue: window }]
 })
 export class ListaAlumnosComponent implements OnInit {
-
+  
   //var listado alumnos 
-  listaAlumnos : {};	
+  listaAlumnos : {};
 
-  constructor(private newService :CommonsService, private router: Router) { }
+  constructor( @Inject('Window') private window: Window,private newService :CommonsService, private router: Router) { }
 
   ngOnInit() {
 
@@ -41,6 +46,14 @@ export class ListaAlumnosComponent implements OnInit {
     localStorage.setItem('CursoAlumno', curso);
    //se redirecciona al menu
     this.router.navigate(["/actualizaAlumnos"]);
+}
+
+download() {
+        var doc = new jsPDF('p', 'pt');
+        var elem = document.getElementById("basic-table");
+        var res = doc.autoTableHtmlToJson(elem);
+        doc.autoTable(res.columns, res.data);
+        doc.save("reporteAlumnos.pdf");
 }
 
 }

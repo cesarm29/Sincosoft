@@ -14,7 +14,7 @@
        </a>
      <h6>{{msgex}}</h6>
     </div>
-<table datatable class="row-border hover">
+<table datatable class="row-border hover" id="basic-table" >
   <thead>
     <tr>
       <th>Nombres</th>
@@ -23,6 +23,7 @@
       <th>Direccion</th>
       <th>Telefono</th>
       <th>Accion</th>
+      <th>Reporte</th>
     </tr>
   </thead>
   <tbody>
@@ -33,6 +34,7 @@
       <td>{{item.direccion}}</td>
       <td>{{item.telefono}}</td>
       <td><button type="button" class="btn  btn-danger" (click)="eliminar(item.id)">Eliminar</button></td>
+      <td><button type="button" class="btn btn-warning" (click)="download(item.id)">Generar Reporte</button></td>
     </tr>
   </tbody>
 </table>

@@ -2,7 +2,7 @@
 
 <div class="container">
 	<p>Listado Alumnos</p>
-<table datatable class="row-border hover">
+<table datatable class="row-border hover" id="basic-table">
   <thead>
     <tr>
       <th>Nombres</th>
@@ -12,6 +12,7 @@
       <th>Telefono</th>
       <th>Curso</th>
       <th>Accion</th>
+      <th>Reporte</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
       <td>{{item.telefono}}</td>
       <td>{{item.curso}}</td>
       <td><button type="button" class="btn btn-primary" (click)="Actualizar(item.id,item.nombre,item.apellido,item.documento,item.direccion,item.telefono,item.curso)">Actualizar</button></td>
+      <td><button type="button" class="btn btn-warning" (click)="download(item.id)">Generar Reporte</button></td>
     </tr>
   </tbody>
 </table>

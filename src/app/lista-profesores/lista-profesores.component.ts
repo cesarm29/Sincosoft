@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {CommonsService} from '../commons.service';
 import {Http,Response, Headers, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';  
+declare var jsPDF: any;
 
 
 @Component({
@@ -67,6 +68,14 @@ export class ListaProfesoresComponent implements OnInit {
     //se redirecciona al menu
     this.router.navigate(["/"]);
   } 
+
+    download() {
+        var doc = new jsPDF('p', 'pt');
+        var elem = document.getElementById("basic-table");
+        var res = doc.autoTableHtmlToJson(elem);
+        doc.autoTable(res.columns, res.data);
+        doc.save("reporteProfesores.pdf");
+  }
 
 
 

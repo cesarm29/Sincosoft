@@ -2,13 +2,14 @@
 
 <div class="container">
 	<p>Listado Notas</p>
-<table datatable class="row-border hover">
+<table datatable class="row-border hover" id="basic-table" >
   <thead>
     <tr>
       <th>Valor</th>
       <th>Fecha</th>
       <th>Materia</th>
       <th>Alumno</th>
+      <th>Reporte</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
       <td>{{item.fecha}}</td>
       <td>{{item.materias_id}}</td>
       <td>{{item.alumnos_id}}</td>
+      <td><button type="button" class="btn btn-warning" (click)="download(item.id)">Generar Reporte</button></td>
     </tr>
   </tbody>
 </table>
