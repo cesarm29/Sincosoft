@@ -53,9 +53,9 @@ app.post('/createAlumnos', function (req, res) {
 //update alumnos
 app.put('/updateAlumnos', function (req, res) {
  pool.getConnection(function (err, connection) {
-   connection.query('UPDATE alumnos SET nombre=?, apellido=? , direccion=? , telefono=? , curso=? , documento=? where id=?', [req.body.nombre,req.body.apellido,req.body.direccion,req.body.telefono,req.body.curso,req.body.documento, req.body.id], function (err, result) {
+   
+   connection.query('UPDATE alumnos SET nombre = ?, apellido = ? , direccion = ? , telefono = ? , curso = ? , documento = ? WHERE id = ?', [req.body.nombre,req.body.apellido,req.body.direccion,req.body.telefono,req.body.curso,req.body.documento, req.body.id], function (err, result) {
     connection.release();
-     if (error) throw error;
       res.send(JSON.stringify('Alumno actualizado'));
      });
   });
@@ -110,12 +110,12 @@ app.put('/updateProfesores', function (req, res) {
 });
 
 //delete profesores
-app.delete('/deleteProfesores', function (req, res) {
+app.post('/deleteProfesores', function (req, res) {
   pool.getConnection(function (err, connection) {
+    console.log(req.body.id);
     connection.query('DELETE FROM profesores WHERE id=?', [req.body.id], function (err, result) {
-     connection.release();  
-     if (error) throw error;
-     res.send('profesor eliminado!');
+     connection.release(); 
+     res.send(JSON.stringify('Profesor eliminado'));
    });
  });
 });
@@ -128,6 +128,18 @@ app.delete('/deleteProfesores', function (req, res) {
 app.get('/getMaterias', function (req, res) {
     pool.getConnection(function (err, connection) {
         connection.query("select * from materias", function (err, rows) {
+            connection.release();
+            if (err) throw err;
+            console.log(rows.length);
+            res.send(JSON.stringify(rows));
+        });
+    });
+});
+
+//get materias
+app.get('/getMateriasInner', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        connection.query("select materias.nombre, materias.descripcion, CONCAT(alumnos.nombre, ' ', alumnos.apellido) as alumnos_id, CONCAT(profesores.nombre, ' ', profesores.apellido) as profesores_id  from materias INNER JOIN alumnos ON alumnos.id = materias.alumnos_id   INNER JOIN profesores ON profesores.id = materias.profesores_id ", function (err, rows) {
             connection.release();
             if (err) throw err;
             console.log(rows.length);
@@ -183,6 +195,20 @@ app.get('/getNotas', function (req, res) {
         });
     });
 });
+
+//get notas
+app.get('/getNotasInner', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        connection.query("select valor, fecha,  CONCAT(alumnos.nombre, ' ', alumnos.apellido) as alumnos_id, materias.nombre as materias_id from notas INNER JOIN alumnos ON alumnos.id = notas.alumnos_id   INNER JOIN materias ON materias.id = notas.materias_id", function (err, rows) {
+            connection.release();
+            if (err) throw err;
+            console.log(rows.length);
+            res.send(JSON.stringify(rows));
+        });
+    });
+});
+
+
 //insert notas
 app.post('/createNotas', function (req, res) {
  pool.getConnection(function (err, connection) {    

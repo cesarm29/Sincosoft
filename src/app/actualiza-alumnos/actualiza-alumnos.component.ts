@@ -24,13 +24,23 @@ export class ActualizaAlumnosComponent implements OnInit {
 
   ngOnInit() {
 
+  	//recupero del local datos
+  var IdAlumno = localStorage.getItem("IdAlumno");
+  var NombreAlumno = localStorage.getItem("NombreAlumno");
+  var ApellidoAlumno = localStorage.getItem("ApellidoAlumno");
+  var DocumentoAlumno = localStorage.getItem("DocumentoAlumno");
+  var DireccionAlumno = localStorage.getItem("DireccionAlumno");
+  var TelefonoAlumno = localStorage.getItem("TelefonoAlumno");
+  var CursoAlumno = localStorage.getItem("CursoAlumno");
+
+
   	this.registerForm = this.formBuilder.group({
-            nombres: ['', Validators.required],
-            apellidos: ['', Validators.required],
-            documento: ['', Validators.required],
-            direccion: ['', Validators.required],
-            telefono: ['', Validators.required],
-            curso: ['', Validators.required]
+            nombres: [NombreAlumno, Validators.required],
+            apellidos: [ApellidoAlumno, Validators.required],
+            documento: [DocumentoAlumno, Validators.required],
+            direccion: [DireccionAlumno, Validators.required],
+            telefono: [TelefonoAlumno, Validators.required],
+            curso: [CursoAlumno, Validators.required]
         });
 
   }
@@ -44,9 +54,9 @@ export class ActualizaAlumnosComponent implements OnInit {
     if (this.registerForm.invalid) {
        return;
     }else{
-	  this.newService.updateAlumnos(this.registerForm.value.id,this.registerForm.value.nombres, this.registerForm.value.apellidos,this.registerForm.value.direccion,this.registerForm.value.telefono,this.registerForm.value.curso,this.registerForm.value.documento)  
+	  this.newService.updateAlumnos(localStorage.getItem("IdAlumno"),this.registerForm.value.nombres, this.registerForm.value.apellidos,this.registerForm.value.direccion,this.registerForm.value.telefono,this.registerForm.value.curso,this.registerForm.value.documento)  
 	  .subscribe(data =>  {  
-	  	  this.listaAlumnos = data;  	  
+	  	  this.listaAlumnos = data; 	  
 	  	  	if(this.listaAlumnos == "Alumno actualizado"){
   	  		     this.msgex = "Alumno actualizado";
 	  	    }else{
@@ -55,6 +65,9 @@ export class ActualizaAlumnosComponent implements OnInit {
 	  }); 
     } 
   }
+
+
+
 
 
 

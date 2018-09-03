@@ -21,7 +21,7 @@ export class ListaNotasComponent implements OnInit {
   }
 
   getNotas(item){
-  	this.newService.getListNotas(item)  
+  	this.newService.getListNotasInner(item)  
 	  .subscribe(data =>  {  
 	  	  this.listaNotas = data; 
 	  	  console.log(this.listaNotas);  	     

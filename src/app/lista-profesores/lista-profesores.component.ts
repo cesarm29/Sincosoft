@@ -11,9 +11,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./lista-profesores.component.css']
 })
 export class ListaProfesoresComponent implements OnInit {
-
+  msg:string = '';
+  msgex:string = '';
   //var listado profesores 
-  listaProfesores : {};	
+  listaProfesores : {};
+   lista : {};	
 
   constructor(private newService :CommonsService, private router: Router) { }
 
@@ -29,6 +31,45 @@ export class ListaProfesoresComponent implements OnInit {
 	  }); 
 
   }
+
+
+ eliminar(id){
+
+  if (confirm("Esta seguro de eliminar este profesor!")) {
+   
+
+    this.newService.deleteProfesores(id)  
+    .subscribe(data =>  {  
+        this.lista = data;
+        if(this.lista == "Profesor eliminado"){
+               this.msgex = "Profesor eliminado";
+               this.router.navigate(["/listaProfesores"]);
+          }else{
+               this.msg = "Error no se elimino el profesor";
+          }         
+    }); 
+
+} else {
+    
+}
+
+ }
+
+ closeAlert():void {
+    this.msg = '';
+  }
+
+  closeAlertEx():void {
+    this.msgex = '';
+  } 
+
+  close(){
+    //se redirecciona al menu
+    this.router.navigate(["/"]);
+  } 
+
+
+
 
 }
 

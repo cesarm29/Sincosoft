@@ -45,7 +45,7 @@ export class CommonsService {
     };
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers }); 
-    return this.http.post('http://localhost:3000/updateAlumnos/', body, options)  
+    return this.http.put('http://localhost:3000/updateAlumnos/', body, options)  
             .map((response: Response) =>response.json())              
   }
 
@@ -97,7 +97,7 @@ export class CommonsService {
     };
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers }); 
-    return this.http.post('http://localhost:3000/updateProfesores/', body, options)  
+    return this.http.put('http://localhost:3000/updateProfesores/', body, options)  
             .map((response: Response) =>response.json())              
   }
 
@@ -120,6 +120,12 @@ export class CommonsService {
   //service to mysql get materias all
   getListMaterias(item){      
     return this.http.get('http://localhost:3000/getMaterias/', item)  
+            .map((response: Response) =>response.json())              
+  }
+
+   //service to mysql get materias all
+  getListMateriasInner(item){      
+    return this.http.get('http://localhost:3000/getMateriasInner/', item)  
             .map((response: Response) =>response.json())              
   }
 
@@ -171,6 +177,12 @@ export class CommonsService {
   //service to mysql get notas all
   getListNotas(item){      
     return this.http.get('http://localhost:3000/getNotas/', item)  
+            .map((response: Response) =>response.json())              
+  }
+
+   //service to mysql get notas all
+  getListNotasInner(item){      
+    return this.http.get('http://localhost:3000/getNotasInner/', item)  
             .map((response: Response) =>response.json())              
   }
 

@@ -24,7 +24,7 @@ export class ListaMateriasComponent implements OnInit {
   }
 
   getMaterias(item){
-  	this.newService.getListMaterias(item)  
+  	this.newService.getListMateriasInner(item)  
 	  .subscribe(data =>  {  
 	  	  this.listaMaterias = data; 
 	  	  console.log(this.listaMaterias);  	     

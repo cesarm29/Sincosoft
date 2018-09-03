@@ -30,4 +30,17 @@ export class ListaAlumnosComponent implements OnInit {
 
   }
 
+  Actualizar(id,nombre,apellido,documento,direccion,telefono,curso){
+     //almacenamos en storage
+    localStorage.setItem('IdAlumno', id);
+    localStorage.setItem('NombreAlumno', nombre);
+    localStorage.setItem('ApellidoAlumno', apellido);
+    localStorage.setItem('DocumentoAlumno', documento);
+    localStorage.setItem('DireccionAlumno', direccion);
+    localStorage.setItem('TelefonoAlumno', telefono);
+    localStorage.setItem('CursoAlumno', curso);
+   //se redirecciona al menu
+    this.router.navigate(["/actualizaAlumnos"]);
+}
+
 }

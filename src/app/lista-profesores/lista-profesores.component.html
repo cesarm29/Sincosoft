@@ -2,6 +2,18 @@
 
 <div class="container">
 	<p>Listado Profesores</p>
+   <div class="alert alert-danger alert-dismissable fuente-project" *ngIf="msg">
+       <a class="close" (click)="closeAlert()">
+          &times;
+       </a>
+     <h6>{{msg}}</h6>
+    </div>
+    <div class="alert alert-success alert-dismissable fuente-project" *ngIf="msgex">
+       <a class="close" (click)="closeAlertEx()">
+          &times;
+       </a>
+     <h6>{{msgex}}</h6>
+    </div>
 <table datatable class="row-border hover">
   <thead>
     <tr>
@@ -20,7 +32,7 @@
       <td>{{item.documento}}</td>
       <td>{{item.direccion}}</td>
       <td>{{item.telefono}}</td>
-      <td><button type="button" class="btn  btn-danger">Eliminar</button></td>
+      <td><button type="button" class="btn  btn-danger" (click)="eliminar(item.id)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
