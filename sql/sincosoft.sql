@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-09-2018 a las 23:49:33
+-- Tiempo de generación: 03-09-2018 a las 05:16:34
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -109,7 +109,7 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`id`, `nombre`, `apellido`, `direccion`, `telefono`, `documento`) VALUES
-(1, 'juan', 'gomez', 'calle 26 sur n 78 h- 30', '6043572', 778899);
+(1, 'prueba', 'prueba', 'calle 123', '123131', 123213213);
 
 --
 -- Índices para tablas volcadas
@@ -168,7 +168,7 @@ ALTER TABLE `notas`
 -- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
